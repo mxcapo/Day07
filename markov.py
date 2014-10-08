@@ -21,8 +21,8 @@ def make_chains(corpus):
         else:
             cinderella_dict[dictionary_key_pair].append(dictionary_value)
     # print words
-    return cinderella_dict       
-
+    print cinderella_dict       
+# we made a bunch of lists , oops
 def make_text(chains):
     """Takes a dictionary of markov chains and returns random text
     based off an original text."""
@@ -37,7 +37,7 @@ def make_text(chains):
         current_key = (start_key[1], value)
         value = random.choice(chains[current_key])
         random_text_string = current_key[0], current_key[1]
-        random_text_string = random_text_string.append(value)
+        # random_text_string = random_text_string.append(value)
         print random_text_string
         # print "This is our current key %s, %s" % (current_key[0], current_key[1])
         start_key = current_key
