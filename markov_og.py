@@ -45,36 +45,91 @@ def make_text(chains):
     # return "Here's some random text."
 
     starters = []
+    end_punctuation = ['!', '.', '"', '?']
+    # end_tweet = False
 
     for chain in chains.keys():
         if chain[0][0] in string.ascii_uppercase:
             starters.append(chain)
 
-
     start_key = random.choice(starters) # Still stunting,
     value = random.choice(chains[start_key]) # how
-    silly_list = str(start_key[0]) + " " + str(start_key[1]) + " " # Still stunting,
+    silly_list = str(start_key[0]) + " " + str(start_key[1]) # Still stunting,
 
     # for i in range(len(chains.keys())):
     #     print start_key
     #     print value
 
-    while start_key in chains.keys():
+    while start_key in chains.keys() and (len(silly_list) < 140):
         # print "This is our start_key: %s, %s" % (start_key[0], start_key[1])
         # print "This is our value: %s" % value
         # markov_phrase = start_key[0],start_key[1], value,
         # print value
-
-        enders = ['!', '.']
+        silly_list = silly_list + " "
         value = random.choice(chains[start_key])
+        silly_list = silly_list + str(value)
+        start_key = (start_key[1], value)
+    
+    x = 0
+    for mark in end_punctuation:
+        if mark not in silly_list:
+            x += 1
+    if x == len(end_punctuation):
+        if len(silly_list) < 140:
+            silly_list = silly_list + "."
+        else:
+            return silly_list
+
+        print silly_list
+    # print silly_list
+    # print "silly list[-1] is %r" % (silly_list[-1])
+    # print "silly_list[-2] is %r" % (silly_list[-2])
+
+    while silly_list[-1] not in end_punctuation:
+        silly_list = silly_list[:-1]
+        print silly_list
+        # if silly_list[-1] in end_punctuation:
+        #     print silly_list
+
+        # if start_key[-1][-1] in end_punctuation:
+        #     try
+        #         silly_list = silly_list + str(value) + " "
+        #         start_key = (start_key[1], value)
+
+        #     except:
+        #         len(silly_list) + len(str(value)) > 140
+        #         break
+        # # else:
+        #     silly_list = silly_list + str(value) + " "
+        #     start_key = (start_key[1], value)
+
+
+        # if silly_list[-2] in end_punctuation:
+        #     new_key = (start_key[1], value)
+
+            # if (len(silly_list) + len(random.choice(chains[new_key]))) > 140:
+            #     break
+      
+            # new_key = (start_key[1], value)
+            # print "New Key is %s %s" % (new_key[0], new_key[1])
+            # start_key = new_key
+
+
+            
+        # start_key = new_key
         # silly_list = silly_list + str(value) + " "
         # start_key = (start_key[1], value) # start key s/b stunting, how
-
-        if silly_list[-1] in enders and len(silly_list + str(value)) > 140:
-            break
-        else:
-            silly_list = silly_list + str(value) + " "
-            start_key = (start_key[1], value) # start key s/b stunting, how
+        
+        # break if the list is already ending in punctuation and adding
+        # a new value will make the string longer than 140 characters
+        
+            
+        #     len(silly_list + str(value)) > 140:
+        #     break
+        # else:
+        #     # silly_list = silly_list + str(value) + " "
+        #     # new_key = (start_key[1], value) # start key s/b stunting, how
+        #     start_key = new_key
 
         # while len(silly_list) <= 140 and value[-1] not in enders:
         # if len(silly_list) > 140:
@@ -82,7 +137,7 @@ def make_text(chains):
         # silly_list.append(value,)
         # print start_key
 
-    print silly_list
+    # print silly_list
 
 def main():
     args = sys.argv
