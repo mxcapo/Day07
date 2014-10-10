@@ -2,6 +2,7 @@
 
 import sys
 import random
+import string
 
 def make_chains(corpus):
     """Takes an input text as a string and returns a dictionary of
@@ -43,7 +44,14 @@ def make_text(chains):
     based off an original text."""
     # return "Here's some random text."
 
-    start_key = random.choice(chains.keys()) # Still stunting,
+    starters = []
+
+    for chain in chains.keys():
+        if chain[0][0] in string.ascii_uppercase:
+            starters.append(chain)
+
+
+    start_key = random.choice(starters) # Still stunting,
     value = random.choice(chains[start_key]) # how
     silly_list = str(start_key[0]) + " " + str(start_key[1]) + " " # Still stunting,
 
