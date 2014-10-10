@@ -64,11 +64,21 @@ def make_text(chains):
         # print "This is our value: %s" % value
         # markov_phrase = start_key[0],start_key[1], value,
         # print value
+
+        enders = ['!', '.']
         value = random.choice(chains[start_key])
-        silly_list = silly_list + str(value) + " "
-        start_key = (start_key[1], value) # start key s/b stunting, how
-        if len(silly_list) > 100:
+        # silly_list = silly_list + str(value) + " "
+        # start_key = (start_key[1], value) # start key s/b stunting, how
+
+        if silly_list[-1] in enders and len(silly_list + str(value)) > 140:
             break
+        else:
+            silly_list = silly_list + str(value) + " "
+            start_key = (start_key[1], value) # start key s/b stunting, how
+
+        # while len(silly_list) <= 140 and value[-1] not in enders:
+        # if len(silly_list) > 140:
+        #     break
         # silly_list.append(value,)
         # print start_key
 
