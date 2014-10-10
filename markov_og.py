@@ -80,14 +80,14 @@ def make_text(chains):
         else:
             return silly_list
 
-        print silly_list
+        # print silly_list
     # print silly_list
     # print "silly list[-1] is %r" % (silly_list[-1])
     # print "silly_list[-2] is %r" % (silly_list[-2])
 
     while silly_list[-1] not in end_punctuation:
         silly_list = silly_list[:-1]
-        print silly_list
+    print silly_list
         # if silly_list[-1] in end_punctuation:
         #     print silly_list
 

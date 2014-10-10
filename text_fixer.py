@@ -15,7 +15,7 @@ def open_and_read_file(corpus):
 		else:
 			line = line.strip()
 			print line
-
+	f.close()
 
 
 
