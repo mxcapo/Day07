@@ -12,7 +12,7 @@ def make_chains(corpus):
     text_block = f.read()
     stripped_block = text_block.strip()
     
-    punctuation = ['%', '&', '(', ')', '*', '+', '/', '<', '=', '>', '@', '[', ']', '^', '`', '{', '|', '}', '~', '_']
+    punctuation = ['%', '(', ')', '*', '+', '/', '<', '=', '>', '[', ']', '^', '`', '{', '|', '}', '~', '_']
    
     block_no_punctuation = ""
     
