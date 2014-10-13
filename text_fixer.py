@@ -1,8 +1,8 @@
 import sys
 
 
-def open_and_read_file(corpus):
-	"""let's try to get those numbers out"""
+def open_and_read_by_line(corpus):
+	"""removing comment and reply lines from tfln"""
 
 	f = open(corpus)
 
@@ -14,24 +14,35 @@ def open_and_read_file(corpus):
 			continue
 		else:
 			line = line.strip()
-			print line
+		return line
+
+
 	f.close()
 
+def open_and_read_by_block(corpus):
+	"""trying to make sense of lilo's tweets"""
 
+	f = open(corpus)
 
+	text_block = f.read()
+	stripped_block = text_block.strip()
+	split_block = stripped_block.split()
+	
+	return split_block
 
-
-
-
-
-
+	f.close()
+	
 
 def main():
 	args = sys.argv
 
-	input_text = args[1]
+	input_text, mode = args[1], args[2]
 
-	open_and_read_file(input_text)
-
+	if mode == "byline":
+		print open_and_read_file(input_text)
+	elif mode == "byblock":
+		print open_and_read_by_block(input_text)
+	
+	
 if __name__ == "__main__":
 	main()

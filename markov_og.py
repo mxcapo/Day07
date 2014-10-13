@@ -12,7 +12,7 @@ def make_chains(corpus):
     text_block = f.read()
     stripped_block = text_block.strip()
     
-    punctuation = ['%', '(', ')', '*', '+', '/', '<', '=', '>', '[', ']', '^', '`', '{', '|', '}', '~', '_']
+    punctuation = ['"', '%', '(', ')', '*', '+', '/', '<', '>', '[', ']', '^', '`', '{', '|', '}', '~', '_']
    
     block_no_punctuation = ""
     
@@ -22,6 +22,9 @@ def make_chains(corpus):
             block_no_punctuation += character
 
     split_block = block_no_punctuation.split()
+    # split_block = stripped_block.split()
+
+    # print split_block
 
     # return split_block
 
@@ -39,11 +42,11 @@ def make_chains(corpus):
 
     return markov_dictionary 
 
+
 def make_text(chains):
     """Takes a dictionary of markov chains and returns random text
     based off an original text."""
     # return "Here's some random text."
-
     starters = []
     end_punctuation = ['!', '.', '"', '?']
     # end_tweet = False
@@ -87,7 +90,7 @@ def make_text(chains):
 
     while silly_list[-1] not in end_punctuation:
         silly_list = silly_list[:-1]
-    print silly_list
+    return silly_list
         # if silly_list[-1] in end_punctuation:
         #     print silly_list
 
@@ -146,7 +149,8 @@ def main():
     input_text = args[1]
 
     chain_dict = make_chains(input_text)
-    random_text = make_text(chain_dict)
+    # random_text = make_text(chain_dict)
+    print make_text(chain_dict)
     # print random_text
     # print chain_dict
 
